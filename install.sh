@@ -9,7 +9,7 @@ function link_file() {
 }
 
 
-echo " *** Up dating bundle in $checkout_folder/"
+echo " *** Updating bundle in $checkout_folder/"
 cd "$checkout_folder" && git submodule init && git submodule update && 
 cd - > /dev/null || exit
 
