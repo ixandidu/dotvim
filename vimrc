@@ -144,18 +144,7 @@ if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
 
-" Color scheme
-if $COLORTERM == 'gnome-terminal'
-  set term=gnome-256color
-endif
-"colorscheme ir_black
-colorscheme railscasts
-" ==== solarized theme begin
-"syntax enable
-"set background=light
-"set background=dark
-"colorscheme solarized
-" ==== solarized theme end
+colorscheme default 
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
