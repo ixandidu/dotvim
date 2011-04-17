@@ -28,6 +28,7 @@ map Q gq
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  echo '======================================== syntax_on'
   syntax on
   set hlsearch
 endif
@@ -84,6 +85,7 @@ endif " has("autocmd")
 "  set foldnestmax=2
 "  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
 "endif
+
 
 " Softtabs, 2 spaces
 set tabstop=2
