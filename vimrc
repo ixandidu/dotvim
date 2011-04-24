@@ -1,5 +1,8 @@
-" based on http://github.com/jferris/config_files/blob/master/vimrc
+" Pathogen initialize
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
+" based on http://github.com/jferris/config_files/blob/master/vimrc
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -28,17 +31,12 @@ map Q gq
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  echo '======================================== syntax_on'
   syntax on
   set hlsearch
 endif
 
 " Switch wrap off for everything
 set nowrap
-
-" Pathogen initialize
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -60,7 +58,7 @@ if has("autocmd")
   au!
 
   " For all text files, markdown, and ruby set 'textwidth' to 80 characters.
-  " autocmd FileType text,markdown,ruby setlocal textwidth=80
+  autocmd FileType text,markdown,ruby setlocal textwidth=80
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -78,13 +76,13 @@ else
   set autoindent    " always set autoindenting on
 endif " has("autocmd")
 
-"if has("folding")
-"  set foldenable
-"  set foldmethod=syntax
-"  set foldlevel=1
-"  set foldnestmax=2
-"  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-"endif
+if has("folding")
+  set foldenable
+  set foldmethod=syntax
+  set foldlevel=1
+  set foldnestmax=2
+  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+endif
 
 
 " Softtabs, 2 spaces
@@ -104,9 +102,9 @@ map <Leader>R :e doc/README_FOR_APP<CR>
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" Move lines up and down
-" map <C-J> :m +1 <CR>
-" map <C-K> :m -2 <CR>
+" Show NERDTree 
+map <Leader>nt :NERDTreeToggle<CR>
+
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
@@ -217,14 +215,14 @@ autocmd VimEnter * wincmd p
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 
 " If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
+function! s:CdIfDirectory(directory)
   if isdirectory(a:directory)
     call ChangeDirectory(a:directory)
   endif
 endfunction
 
 " NERDTree utility function
-function s:UpdateNERDTree(stay)
+function! s:UpdateNERDTree(stay)
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) != -1
       NERDTree
@@ -236,10 +234,20 @@ function s:UpdateNERDTree(stay)
 endfunction
 
 " Public NERDTree-aware versions of builtin functions
-function ChangeDirectory(dir, ...)
+function! ChangeDirectory(dir, ...)
   execute "cd " . a:dir
   let stay = exists("a:1") ? a:1 : 1
   call s:UpdateNERDTree(stay)
+endfunction
+
+" Show highlighting groups for current word
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
 " Local config

@@ -1,11 +1,11 @@
 set guioptions=maxhorz,maxvert
 
 set guioptions-=T " hide toolbar
-" set guioptions-=r " hide right scrollbar
-" set guioptions-=l " hide right scrollbar
-" set guioptions+=aAce
+set guioptions-=r " hide right scrollbar
+set guioptions-=l " hide right scrollbar
+set guioptions+=aAce
 
-if $OSTYPE == 'darwin10.0'
+if $VIM =~ '/Application'
   set transparency=10
 endif
 
@@ -20,18 +20,17 @@ set cursorline
 
 colorscheme railscasts
 
-if $OSTYPE == 'darwin10.0'
+if $VIM =~ '/Application'
   "set guifont=Monaco:h10
   set guifont=Inconsolata:h12
   "set guifont=DejaVu\ Sans\ Mono:h13
 else
-  "set guifont=Monospace 8
-  set guifont=Inconsolata\ 8
-  "set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
+  set guifont=Monospace 8
+  "set guifont=Inconsolata\ 8
 endif
 
 " highlight column after the value of `textwidth` setting
-if has("syntax") &&  $OSTYPE == 'darwin10.0'
+if has("syntax") && $VIM =~ '/Application'
   set colorcolumn=+1 ",+2,+3,+4,+5,+6,+7,+8,+9,+10
   hi ColorColumn guibg=#323232 guifg=#DA4938
 endif
