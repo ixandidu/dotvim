@@ -76,13 +76,13 @@ else
   set autoindent    " always set autoindenting on
 endif " has("autocmd")
 
-if has("folding")
-  set foldenable
-  set foldmethod=syntax
-  set foldlevel=1
-  set foldnestmax=2
-  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-endif
+"if has("folding")
+"  set foldenable
+"  set foldmethod=syntax
+"  set foldlevel=1
+"  set foldnestmax=2
+"  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+"endif
 
 
 " Softtabs, 2 spaces
@@ -102,8 +102,9 @@ map <Leader>R :e doc/README_FOR_APP<CR>
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" Show NERDTree 
+" Toggle NERDTree 
 map <Leader>nt :NERDTreeToggle<CR>
+
 
 
 " Inserts the path of the currently edited file into a command
@@ -249,6 +250,15 @@ function! <SID>SynStack()
 
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
+
+
+" CheatSheets
+" - Tidy xml
+"   :%!tidy -i -q -w 0 -xml
+"
+" - Tidy xhtml
+"   :%!tidy -i -q -w 0 -asxhtml
+"
 
 " Local config
 if filereadable(".vimrc.local")
