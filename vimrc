@@ -105,7 +105,8 @@ map <Leader>h :set invhls <CR>
 " Toggle NERDTree 
 map <Leader>nt :NERDTreeToggle<CR>
 
-
+" Gundo toggle
+map <Leader>gd :GundoToggle<CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
@@ -254,11 +255,17 @@ endfunction
 
 " CheatSheets
 " - Tidy xml
-"   :%!tidy -i -q -w 0 -xml
+"
+"     :%!tidy -i -q -w 0 -xml
 "
 " - Tidy xhtml
-"   :%!tidy -i -q -w 0 -asxhtml
 "
+"     :%!tidy -i -q -w 0 -asxhtml
+"
+" - Markdown to html
+"
+"     :%!Markdown.pl --html4tags
+
 
 " Local config
 if filereadable(".vimrc.local")
