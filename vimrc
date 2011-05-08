@@ -10,6 +10,7 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" set noswapfile
 set nobackup
 set nowritebackup
 " keep 50 lines of command line history
@@ -108,6 +109,9 @@ map <Leader>nt :NERDTreeToggle<CR>
 " Gundo toggle
 map <Leader>gd :GundoToggle<CR>
 
+" disabble autoindenting when pasting text from clipboard
+set pastetoggle=<F2>
+
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
@@ -140,13 +144,14 @@ imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
 " set list listchars=tab:»·,trail:·
+set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
 
 " Use Ack instead of Grep when available
 if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
 
-colorscheme default 
+colorscheme default
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -163,6 +168,9 @@ let g:snippetsEmu_key = "<S-Tab>"
 set completeopt=longest,menu
 set wildmode=list:longest,list:full
 set complete=.,t
+
+" ignore some file extentions when completing names by pressing tab
+set wildignore=*.swp,*.bak,*.pyc,*.class 
 
 " case only matters with mixed case expressions
 set ignorecase
@@ -252,6 +260,8 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
+" I allways forget using sudo
+cmap w!! w !sudo tee % >/dev/null
 
 " CheatSheets
 " - Tidy xml
