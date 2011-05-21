@@ -42,3 +42,7 @@
   path = bundle/gundo
   url = git://github.com/sjl/gundo.vim.git
   ignore = dirty
+[submodule "bundle/coffee-script"]
+  path = bundle/coffee-script
+  url = git://github.com/kchmck/vim-coffee-script.git
+  ignore = dirty

@@ -11,8 +11,9 @@ set nocompatible
 set backspace=indent,eol,start
 
 " set noswapfile
-set nobackup
-set nowritebackup
+set nobackup         " Don't make a backup before overwriting a file
+set nowritebackup    " And again
+
 " keep 50 lines of command line history
 set history=50
 " show the cursor position all the time
@@ -21,6 +22,12 @@ set ruler
 set showcmd
 " do incremental searching
 set incsearch
+" Show 3 lines of content arround the cursor
+set scrolloff=3
+" Set the Terminal's title 
+set title
+" No Beeping
+set visualbell
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -94,6 +101,8 @@ set expandtab
 " Always display the status line
 set laststatus=2
 
+"set autochdir=true " otomatis pindah working directory sesuai dengan file yg sedang di edit
+
 " \ is the leader character
 " let mapleader = ","
 
@@ -144,7 +153,8 @@ imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
 " set list listchars=tab:»·,trail:·
-set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
+" set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
+set mouse=a
 
 " Use Ack instead of Grep when available
 if executable("ack")
@@ -220,7 +230,7 @@ vmap <C-k> xkP`[V`]
 "vmap <C-k> :m -2 <CR>`[V`]
 
 " Project Tree
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 
