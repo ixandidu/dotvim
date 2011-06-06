@@ -144,7 +144,9 @@ au! BufRead,BufNewFile *.haml         setfiletype haml
 nmap <F1> <Esc>
 
 " Press ^F from insert mode to insert the current file name
-imap <C-F> <C-R>=expand("%:t")<CR>
+"imap <C-F> <C-R>=expand("%:t")<CR>
+imap <C-F> <C-R>=substitute(expand("%:t:r"), "^\\d\\+[ _]", "", "")<CR>
+imap <C-C> <C-R>=substitute(substitute(substitute(expand("%:t:r"), "^\\d\\+[ _]", "", ""), "\\(^\\w\\\|\\(_\\)\\w\\)", "\\U\\1", "g"), "_", "", "g")<CR>
 
 " Maps autocomplete to tab
 "imap <Tab> <C-N>
@@ -270,8 +272,14 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
-" I allways forget using sudo
+" I always forget using sudo
 cmap w!! w !sudo tee % >/dev/null
+
+" Auto-Clean Fugitive Buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+" Add git branch to status line
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
 
 " CheatSheets
 " - Tidy xml
