@@ -274,6 +274,7 @@ endfunction
 
 " I always forget using sudo
 cmap w!! w !sudo tee % >/dev/null
+"cmap w!! %!sudo tee > /dev/null % 
 
 " Auto-Clean Fugitive Buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
