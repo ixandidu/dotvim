@@ -103,9 +103,6 @@ set laststatus=2
 
 "set autochdir=true " otomatis pindah working directory sesuai dengan file yg sedang di edit
 
-" \ is the leader character
-" let mapleader = ","
-
 " Edit the README_FOR_APP (makes :R commands work)
 map <Leader>R :e doc/README_FOR_APP<CR>
 
