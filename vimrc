@@ -278,6 +278,10 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Add git branch to status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
+hi CursorLine   cterm=NONE ctermbg=0 ctermfg=None
+hi CursorColumn cterm=NONE ctermbg=0 ctermfg=7
+nnoremap <Leader>cl :set cursorline!<CR>
+nnoremap <Leader>cc :set cursorcolumn!<CR>
 
 " CheatSheets
 " - Tidy xml
