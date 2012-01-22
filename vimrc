@@ -79,6 +79,9 @@ if has("autocmd")
   " Automatically load .vimrc source when saved
   autocmd BufWritePost .vimrc,.gvimrc source $MYVIMRC
 
+  " For Haml
+  au! BufRead,BufNewFile *.haml         setfiletype haml
+
   augroup END
 else
   set autoindent    " always set autoindenting on
@@ -100,8 +103,6 @@ set expandtab
 
 " Always display the status line
 set laststatus=2
-
-"set autochdir=true " otomatis pindah working directory sesuai dengan file yg sedang di edit
 
 " Edit the README_FOR_APP (makes :R commands work)
 map <Leader>R :e doc/README_FOR_APP<CR>
@@ -134,9 +135,6 @@ vmap <C-D> yp`[V`]
 " overwriting the default register
 vmap P p :call setreg('"', getreg('0')) <CR>
 
-" For Haml
-au! BufRead,BufNewFile *.haml         setfiletype haml
-
 " No Help, please
 nmap <F1> <Esc>
 
@@ -160,7 +158,7 @@ if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
 
-colorscheme default
+colorscheme xndd
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -206,16 +204,6 @@ let g:fuf_splitPathMatching=1
 
 set hidden " avoid vim to prompt when changing buffer
 set textwidth=80
-
-hi NonText    ctermbg=None ctermfg=0 guifg=#646464 " guibg=None
-hi SpecialKey ctermbg=None ctermfg=0 guifg=#646464 " guibg=None
-hi LineNr     ctermbg=0    ctermfg=7 guifg=#999999 guibg=#323232
-
-" highlight trailing whitespace, tab characters, and text at column > 80
-hi XnddUtils ctermbg=0 ctermfg=7 guibg=#323232 "guifg=#000000
-match XnddUtils /\s\+$\|\t\+\|\%>80v/
-" 	example of tab and trailing whitespaces     
-" example of line that exceed more that 80 column 1 2 3 4 5 6 7 8 9 0 11 12 13 14 15
 
 " Move single line
 "nmap <C-k> ddkP
@@ -278,8 +266,8 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Add git branch to status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-hi CursorLine   cterm=NONE ctermbg=0 ctermfg=None
-hi CursorColumn cterm=NONE ctermbg=0 ctermfg=7
+"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=None
+"hi CursorColumn cterm=NONE ctermbg=0 ctermfg=7
 nnoremap <Leader>cl :set cursorline!<CR>
 nnoremap <Leader>cc :set cursorcolumn!<CR>
 
