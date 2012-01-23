@@ -14,10 +14,6 @@
   path = bundle/haml
   url = git://github.com/tpope/vim-haml.git
   ignore = dirty
-[submodule "bundle/markdown"]
-  path = bundle/markdown
-  url = git://github.com/tpope/vim-markdown.git
-  ignore = dirty
 [submodule "bundle/surround"]
   path = bundle/surround
   url = git://github.com/tpope/vim-surround.git
@@ -49,12 +45,20 @@
 [submodule "bundle/rake"]
   path = bundle/rake
   url = git://github.com/tpope/vim-rake.git
+  ignore = dirty
 [submodule "bundle/jade"]
-	path = bundle/jade
-	url = git://github.com/digitaltoad/vim-jade.git
+  path = bundle/jade
+  url = git://github.com/digitaltoad/vim-jade.git
+  ignore = dirty
 [submodule "bundle/vim-turbux"]
-	path = bundle/vim-turbux
-	url = git://github.com/jgdavey/vim-turbux.git
+  path = bundle/vim-turbux
+  url = git://github.com/jgdavey/vim-turbux.git
+  ignore = dirty
 [submodule "bundle/tslime.vim"]
-	path = bundle/tslime.vim
-	url = git://github.com/jgdavey/tslime.vim.git
+  path = bundle/tslime.vim
+  url = git://github.com/jgdavey/tslime.vim.git
+  ignore = dirty
+[submodule "bundle/vim-markdown"]
+  path = bundle/vim-markdown
+  url = git://github.com/tpope/vim-markdown.git
+  ignore = dirty

@@ -24,7 +24,7 @@ set showcmd
 set incsearch
 " Show 3 lines of content arround the cursor
 set scrolloff=3
-" Set the Terminal's title 
+" Set the Terminal's title
 set title
 " No Beeping
 set visualbell
@@ -110,7 +110,7 @@ map <Leader>R :e doc/README_FOR_APP<CR>
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" Toggle NERDTree 
+" Toggle NERDTree
 map <Leader>nt :NERDTreeToggle<CR>
 
 " Gundo toggle
@@ -149,8 +149,8 @@ imap <C-C> <C-R>=substitute(substitute(substitute(expand("%:t:r"), "^\\d\\+[ _]"
 imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
-" set list listchars=tab:»·,trail:·
-" set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
+"set list listchars=tab:»·,trail:·
+"set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
 set mouse=a
 
 " Use Ack instead of Grep when available
@@ -159,9 +159,6 @@ if executable("ack")
 endif
 
 colorscheme xndd
-
-highlight NonText guibg=#060606
-highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 " Numbers
 set number
@@ -177,7 +174,7 @@ set wildmode=list:longest,list:full
 set complete=.,t
 
 " ignore some file extentions when completing names by pressing tab
-set wildignore=*.swp,*.bak,*.pyc,*.class 
+set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " case only matters with mixed case expressions
 set ignorecase
@@ -259,17 +256,17 @@ endfunction
 
 " I always forget using sudo
 cmap w!! w !sudo tee % >/dev/null
-"cmap w!! %!sudo tee > /dev/null % 
+"cmap w!! %!sudo tee > /dev/null %
 
 " Auto-Clean Fugitive Buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 " Add git branch to status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-"hi CursorLine   cterm=NONE ctermbg=0 ctermfg=None
-"hi CursorColumn cterm=NONE ctermbg=0 ctermfg=7
 nnoremap <Leader>cl :set cursorline!<CR>
 nnoremap <Leader>cc :set cursorcolumn!<CR>
+
+set cursorline
 
 " CheatSheets
 " - Tidy xml

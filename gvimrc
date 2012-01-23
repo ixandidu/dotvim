@@ -5,7 +5,7 @@ set guioptions-=r " hide right scrollbar
 set guioptions-=l " hide right scrollbar
 set guioptions+=aAce
 
-if $VIM =~ '/Application'
+if $VIM =~ '.app'
   set transparency=10
 endif
 
@@ -18,9 +18,7 @@ set linespace=3
 set cursorline
 " hi CursorLine guifg=#000000
 
-colorscheme railscasts
-
-if $VIM =~ '/Application'
+if $VIM =~ '.app'
   "set guifont=Monaco:h10
   set guifont=Inconsolata:h12
   "set guifont=DejaVu\ Sans\ Mono:h13
@@ -39,20 +37,6 @@ if has("autocmd")
   "autocmd BufWritePost .gvimrc source $MYVIMRC
   autocmd BufWritePost .gvimrc source $MYGVIMRC
 endif
-
-"##############################################################################
-" re-declare highlight setting on .vimrc since the colorscheme override it
-"##############################################################################
-hi NonText    ctermbg=None ctermfg=0 guifg=#646464 " guibg=None
-hi SpecialKey ctermbg=None ctermfg=0 guifg=#646464 " guibg=None
-"hi LineNr     ctermbg=0    ctermfg=7 guifg=#999999 guibg=#323232
-"
-" highlight trailing whitespace, tab characters, and text at column > 80
-hi XnddUtils ctermbg=0 ctermfg=7 guibg=#323232 "guifg=#000000
-match XnddUtils /\s\+$\|\t\+\|\%>80v/
-" 	example of tab and trailing whitespaces     
-" example of line that exceed more that 80 column 2 2 3 4 5 6 7 8 9 0 11 12 13 14 15
-"##############################################################################
 
 " Include user's local vim config
 if filereadable(expand("~/.gvimrc.local"))
