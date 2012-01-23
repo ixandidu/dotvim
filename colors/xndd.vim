@@ -56,7 +56,7 @@ hi Statement                    ctermfg=173   ctermbg=NONE  cterm=NONE          
 hi StorageClass                 ctermfg=173   ctermbg=NONE  cterm=NONE          guifg=#cc7833   guibg=NONE      gui=NONE
 hi String                       ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 hi Tag                          ctermfg=179   ctermbg=NONE  cterm=NONE          guifg=#e8bf6a   guibg=NONE      gui=NONE
-hi Title                        ctermfg=4   ctermbg=NONE  cterm=bold          guifg=#e6e1dc   guibg=NONE      gui=bold
+hi Title                        ctermfg=4     ctermbg=NONE  cterm=bold          guifg=#e6e1dc   guibg=NONE      gui=bold
 hi Todo                         ctermfg=137   ctermbg=NONE  cterm=inverse,bold  guifg=#bc9458   guibg=NONE      gui=inverse,bold,italic
 hi Type                         ctermfg=15    ctermbg=NONE  cterm=NONE          guifg=#ffffff   guibg=NONE      gui=NONE
 hi Underlined                   ctermfg=NONE  ctermbg=NONE  cterm=underline     guifg=NONE      guibg=NONE      gui=underline
@@ -128,11 +128,11 @@ hi markdownH5                   ctermfg=173   ctermbg=NONE  cterm=NONE          
 hi markdownH6                   ctermfg=173   ctermbg=NONE  cterm=NONE          guifg=#cc7833   guibg=NONE      gui=NONE
 hi markdownHeadingRule          ctermfg=173   ctermbg=NONE  cterm=bold          guifg=#cc7833   guibg=NONE      gui=NONE
 hi markdownHeadingDelimiter     ctermfg=173   ctermbg=NONE  cterm=bold          guifg=#cc7833   guibg=NONE      gui=NONE
-hi markdownOrderedListMarker    ctermfg=4     ctermbg=NONE  cterm=bold          guifg=NONE      guibg=NONE      gui=NONE
-hi markdownListMarker           ctermfg=4     ctermbg=NONE  cterm=bold          guifg=NONE      guibg=NONE      gui=NONE
+hi markdownOrderedListMarker    ctermfg=221   ctermbg=NONE  cterm=bold          guifg=#ffc66d   guibg=NONE      gui=bold
+hi markdownListMarker           ctermfg=221   ctermbg=NONE  cterm=bold          guifg=#ffc66d   guibg=NONE      gui=bold
 hi markdownBlockquote           ctermfg=221   ctermbg=NONE  cterm=bold          guifg=#ffc66d   guibg=NONE      gui=bold
 hi markdownRule                 ctermfg=221   ctermbg=NONE  cterm=bold          guifg=#ffc66d   guibg=NONE      gui=bold
-hi markdownLinkText             ctermfg=4     ctermbg=NONE  cterm=underline     guifg=NONE      guibg=NONE      gui=NONE
+hi markdownLinkText             ctermfg=25    ctermbg=NONE  cterm=NONE          guifg=#6d9cbe   guibg=NONE      gui=bold
 hi markdownIdDeclaration        ctermfg=1     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 hi markdownId                   ctermfg=1     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 hi markdownAutomaticLink        ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
@@ -147,8 +147,8 @@ hi markdownBoldItalic           ctermfg=221   ctermbg=NONE  cterm=bold,italic   
 hi markdownCodeDelimiter        ctermfg=1     ctermbg=NONE  cterm=bold          guifg=NONE      guibg=NONE      gui=bold
 hi markdownEscape               ctermfg=212   ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 hi markdownError                ctermfg=212   ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
-hi markdownCode                 ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
-hi markdownCodeBlock            ctermfg=143   ctermbg=NONE  cterm=inverse       guifg=#a5c261   guibg=NONE      gui=NONE
+hi markdownCode                 ctermfg=8     ctermbg=NONE  cterm=NONE          guifg=#999999   guibg=NONE      gui=NONE
+hi markdownCodeBlock            ctermfg=8     ctermbg=NONE  cterm=NONE          guifg=#999999   guibg=NONE      gui=NONE
 " ----
 
 " highlight trailing whitespace, tab characters, and text at column > 80
