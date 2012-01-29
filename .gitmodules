@@ -58,6 +58,3 @@
   path = bundle/tslime.vim
   url = git://github.com/jgdavey/tslime.vim.git
   ignore = dirty
-[submodule "bundle/markdown"]
-	path = bundle/markdown
-	url = https://github.com/tpope/vim-markdown.git
