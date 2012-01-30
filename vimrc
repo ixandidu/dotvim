@@ -61,6 +61,13 @@ if has("autocmd")
   "autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
   autocmd FileType text,markdown setlocal wrap linebreak nolist
 
+  autocmd BufNewFile,BufRead *.markdown,*.md,*.mdown,*.mkd,*.mkdn
+        \ if &ft =~# '^\%(conf\|modula2\)$' |
+        \   set ft=markdown |
+        \ else |
+        \   setf markdown |
+        \ endif
+
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!

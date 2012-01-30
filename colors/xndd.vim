@@ -153,28 +153,30 @@ hi markdownCode                 ctermfg=143   ctermbg=NONE  cterm=NONE          
 hi markdownCodeBlock            ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 
 " Plasticboy vim-markdown
-hi link htmlH1           markdownH1
-hi link htmlH2           markdownH2
-hi link htmlH3           markdownH3
-hi link htmlH4           markdownH4
-hi link htmlH5           markdownH5
-hi link htmlH6           markdownH6
-hi link mkdHeaderFold    Normal
-hi link mkdString        String
-hi link mkdCode          markdownCode
-hi link mkdBlockquote    markdownBlockquote
-hi link mkdLineContinue  String
-hi link mkdListItem      markdownListMarker
-hi link mkdRule          markdownRule
-hi link mkdLineBreak     Todo
-hi link mkdLink          markdownLinkText
-hi link mkdURL           markdownUrl
-hi link mkdInlineURL     markdownAutomaticLink
-hi link mkdID            markdownId
-hi link mkdLinkDef       mkdID
-hi link mkdLinkDefTarget mkdURL
-hi link mkdLinkTitle     markdownUrlTitle
-hi link mkdDelimiter     markdownIdDelimiter
+"hi link htmlH1           markdownH1
+"hi link htmlH2           markdownH2
+"hi link htmlH3           markdownH3
+"hi link htmlH4           markdownH4
+"hi link htmlH5           markdownH5
+"hi link htmlH6           markdownH6
+"hi link mkdHeaderFold    Normal
+"hi link mkdString        String
+"hi link mkdCode          markdownCode
+"hi link mkdBlockquote    markdownBlockquote
+"hi link mkdLineContinue  String
+"hi link mkdListItem      markdownListMarker
+"hi link mkdRule          markdownRule
+"hi link mkdLineBreak     Todo
+"hi link mkdLink          markdownLinkText
+"hi link mkdURL           markdownUrl
+"hi link mkdInlineURL     markdownAutomaticLink
+"hi link mkdID            markdownId
+"hi link mkdLinkDef       mkdID
+"hi link mkdLinkDefTarget mkdURL
+"hi link mkdLinkTitle     markdownUrlTitle
+"hi link mkdDelimiter     markdownIdDelimiter
+"hi link htmlItalic       markdownItalic
+"hi link htmlBold         markdownBold
 
 " ----
 
