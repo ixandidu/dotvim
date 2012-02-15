@@ -119,7 +119,7 @@ hi cssValueLength               ctermfg=143   ctermbg=NONE  cterm=NONE          
 hi cssCommonAttr                ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 hi cssBraces                    ctermfg=NONE  ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 
-" Tpope - Markdown
+" Tpope's Markdown
 hi markdownH1                   ctermfg=173   ctermbg=NONE  cterm=bold          guifg=#cc7833   guibg=NONE      gui=NONE
 hi markdownH2                   ctermfg=173   ctermbg=NONE  cterm=NONE          guifg=#cc7833   guibg=NONE      gui=NONE
 hi markdownH3                   ctermfg=173   ctermbg=NONE  cterm=NONE          guifg=#cc7833   guibg=NONE      gui=NONE
@@ -135,8 +135,8 @@ hi markdownRule                 ctermfg=221   ctermbg=NONE  cterm=bold          
 hi markdownLinkText             ctermfg=4     ctermbg=NONE  cterm=NONE          guifg=#6d9cbe   guibg=NONE      gui=bold
 hi markdownIdDeclaration        ctermfg=1     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 hi markdownId                   ctermfg=1     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
-hi markdownAutomaticLink        ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
-hi markdownUrl                  ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
+hi markdownAutomaticLink        ctermfg=3     ctermbg=NONE  cterm=NONE          guifg=#ffca27   guibg=NONE      gui=NONE
+hi markdownUrl                  ctermfg=3     ctermbg=NONE  cterm=NONE          guifg=#ffca27   guibg=NONE      gui=NONE
 hi markdownUrlTitle             ctermfg=1     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 hi markdownIdDelimiter          ctermfg=1     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
 hi markdownUrlDelimiter         ctermfg=4     ctermbg=NONE  cterm=NONE          guifg=NONE      guibg=NONE      gui=NONE
@@ -151,34 +151,6 @@ hi markdownError                ctermfg=212   ctermbg=NONE  cterm=NONE          
 hi markdownCode                 ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 "hi markdownCodeBlock            ctermfg=8     ctermbg=NONE  cterm=NONE          guifg=#999999   guibg=NONE      gui=NONE
 hi markdownCodeBlock            ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
-
-" Plasticboy vim-markdown
-"hi link htmlH1           markdownH1
-"hi link htmlH2           markdownH2
-"hi link htmlH3           markdownH3
-"hi link htmlH4           markdownH4
-"hi link htmlH5           markdownH5
-"hi link htmlH6           markdownH6
-"hi link mkdHeaderFold    Normal
-"hi link mkdString        String
-"hi link mkdCode          markdownCode
-"hi link mkdBlockquote    markdownBlockquote
-"hi link mkdLineContinue  String
-"hi link mkdListItem      markdownListMarker
-"hi link mkdRule          markdownRule
-"hi link mkdLineBreak     Todo
-"hi link mkdLink          markdownLinkText
-"hi link mkdURL           markdownUrl
-"hi link mkdInlineURL     markdownAutomaticLink
-"hi link mkdID            markdownId
-"hi link mkdLinkDef       mkdID
-"hi link mkdLinkDefTarget mkdURL
-"hi link mkdLinkTitle     markdownUrlTitle
-"hi link mkdDelimiter     markdownIdDelimiter
-"hi link htmlItalic       markdownItalic
-"hi link htmlBold         markdownBold
-
-" ----
 
 " highlight trailing whitespace, tab characters, and text at column > 80
 hi XnddUtils                    ctermfg=NONE  ctermbg=1     cterm=NONE          guifg=NONE      guibg=#dc5164   gui=NONE
