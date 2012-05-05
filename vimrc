@@ -68,6 +68,10 @@ if has("autocmd")
         \   setf markdown |
         \ endif
 
+
+  " taken from: http://dailyvim.tumblr.com/post/1262764095/additional-ruby-syntax-highlighting
+  au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*} set ft=ruby
+
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
