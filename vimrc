@@ -162,7 +162,7 @@ imap <C-L> <Space>=><Space>
 " Display extra whitespace
 "set list listchars=tab:»·,trail:·
 "set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
-set mouse=a
+"set mouse=a
 
 " Use Ack instead of Grep when available
 if executable("ack")
@@ -178,11 +178,16 @@ set numberwidth=5
 " Snippets are activated by Shift+Tab
 let g:snippetsEmu_key = "<S-Tab>"
 
-" Tab completion options
-" (only complete to the longest unambiguous match, and show a menu)
-set completeopt=longest,menu
+" only complete to the longest unambiguous match, show a menu, and location
+" where we can found the displayed string)
+set completeopt=longest,menu,preview
 set wildmode=list:longest,list:full
-set complete=.,t
+" set completion to (in prioritical order)
+" * current buffer
+" * loaded buffer that exists in the list (opened one)
+" * unloaded buffer that exists in the list (closed one)
+" * tag completion (current tags file)
+set complete=.,b,u,t
 
 " ignore some file extentions when completing names by pressing tab
 set wildignore=*.swp,*.bak,*.pyc,*.class
@@ -292,6 +297,8 @@ set cursorline
 "
 "     :%!Markdown.pl --html4tags
 
+" Use system clipboard
+" set clipboard=unnamed
 
 " Local config
 if filereadable(".vimrc.local")
