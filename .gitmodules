@@ -61,3 +61,6 @@
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = git://github.com/ixandidu/vim-markdown.git
+[submodule "bundle/zencoding"]
+	path = bundle/zencoding
+	url = http://github.com/mattn/zencoding-vim.git
