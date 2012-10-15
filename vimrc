@@ -1,4 +1,4 @@
-" Pathogen initialize
+" Pathogen initialization
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
@@ -68,9 +68,8 @@ if has("autocmd")
         \   setf markdown |
         \ endif
 
-
   " taken from: http://dailyvim.tumblr.com/post/1262764095/additional-ruby-syntax-highlighting
-  au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*} set ft=ruby
+  au BufRead,BufNewFile {.simplecov,Guardfile,Capfile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*} set ft=ruby
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -122,12 +121,6 @@ map <Leader>R :e doc/README_FOR_APP<CR>
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" Toggle NERDTree
-map <Leader>nt :NERDTreeToggle<CR>
-
-" Gundo toggle
-map <Leader>gd :GundoToggle<CR>
-
 " disabble autoindenting when pasting text from clipboard
 set pastetoggle=<F2>
 
@@ -176,9 +169,6 @@ colorscheme xndd
 set number
 set numberwidth=5
 
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
-
 " only complete to the longest unambiguous match, show a menu, and location
 " where we can found the displayed string)
 set completeopt=longest,menu,preview
@@ -197,11 +187,18 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set ignorecase
 set smartcase
 
-" Tags
+" CTags - you need to install CTags
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 set tags=./tags;
 
-let g:fuf_splitPathMatching=1
+" golden-ratio - don't wrap the ignored windows
+let g:golden_ratio_wrap_ignored = 1
+
+" Toggle NERDTree
+map <Leader>nt :NERDTreeToggle<CR>
+
+" Gundo toggle
+map <Leader>gd :GundoToggle<CR>
 
 " Open URL
 function! OpenURL()
