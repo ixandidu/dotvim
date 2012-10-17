@@ -64,6 +64,3 @@
 [submodule "bundle/zencoding"]
 	path = bundle/zencoding
 	url = http://github.com/mattn/zencoding-vim.git
-[submodule "bundle/golden-ratio"]
-	path = bundle/golden-ratio
-	url = git://github.com/roman/golden-ratio.git

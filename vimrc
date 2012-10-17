@@ -191,9 +191,6 @@ set smartcase
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 set tags=./tags;
 
-" golden-ratio - don't wrap the ignored windows
-let g:golden_ratio_wrap_ignored = 1
-
 " Toggle NERDTree
 map <Leader>nt :NERDTreeToggle<CR>
 
