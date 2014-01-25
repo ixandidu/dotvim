@@ -153,7 +153,7 @@ hi markdownCode                 ctermfg=143   ctermbg=NONE  cterm=NONE          
 hi markdownCodeBlock            ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 
 " highlight trailing whitespace, tab characters, and text at column > 80
-hi XnddUtils                    ctermfg=NONE  ctermbg=1     cterm=NONE          guifg=NONE      guibg=#dc5164   gui=NONE
+hi XnddUtils                    ctermfg=NONE  ctermbg=8     cterm=NONE          guifg=NONE      guibg=#dc5164   gui=NONE
 match XnddUtils /\s\+$\|\t\+\|\%>80v/
 " 	example of tab and trailing whitespaces     
 " example of line that exceed more that 80 column 1 2 3 4 5 6 7 8 9 0 11 12 13 14 15

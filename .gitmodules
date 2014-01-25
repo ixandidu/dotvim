@@ -64,3 +64,18 @@
 [submodule "bundle/zencoding"]
 	path = bundle/zencoding
 	url = http://github.com/mattn/zencoding-vim.git
+[submodule "bundle/Recover"]
+	path = bundle/Recover
+	url = git://github.com/chrisbra/Recover.vim.git
+[submodule "bundle/tablify"]
+	path = bundle/tablify
+	url = git://github.com/Stormherz/tablify.git
+[submodule "bundle/vim-gitgutter"]
+	path = bundle/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/vim-golang"]
+	path = bundle/vim-golang
+	url = git://github.com/jnwhiteh/vim-golang.git
+[submodule "bundle/emmet-vim"]
+	path = bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git

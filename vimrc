@@ -1,33 +1,40 @@
-" Pathogen initialization
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
-" based on http://github.com/jferris/config_files/blob/master/vimrc
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+"
+" Pathogen initialization
+call pathogen#incubate()
+call pathogen#helptags()
+
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+"
+" Swap backup file
 " set noswapfile
 set nobackup         " Don't make a backup before overwriting a file
 set nowritebackup    " And again
 
-" keep 50 lines of command line history
-set history=50
-" show the cursor position all the time
-set ruler
-" display incomplete commands
-set showcmd
-" do incremental searching
-set incsearch
-" Show 3 lines of content arround the cursor
-set scrolloff=3
-" Set the Terminal's title
-set title
-" No Beeping
-set visualbell
+set history=50 " keep 50 lines of command line history
+
+"
+" My Visual Preference - what I want to visually see.
+set ruler     " show the cursor position all the time
+set showcmd   " display incomplete commands
+set incsearch " do incremental searching
+set nowrap    " Switch wrap off for everything
+set hidden    " avoid vim warning for unsaved changes when changing buffer
+set scrolloff=3     " Show 3 lines of content arround the cursor
+set sidescrolloff=5 " Show 5 chars of content arround the cursor
+set visualbell " No Beeping
+set textwidth=80
+" Higlight current line and column - because I have bad (cylinder) eyesight
+nnoremap <Leader>cl :set cursorline!<CR>
+nnoremap <Leader>cc :set cursorcolumn!<CR>
+set cursorline
+
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -38,13 +45,11 @@ map Q gq
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+if (&t_Co > 2 || has("gui_running")) && has('syntax') && !exists("syntax_on")
   syntax on
   set hlsearch
 endif
 
-" Switch wrap off for everything
-set nowrap
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -70,6 +75,9 @@ if has("autocmd")
 
   " taken from: http://dailyvim.tumblr.com/post/1262764095/additional-ruby-syntax-highlighting
   au BufRead,BufNewFile {.simplecov,Guardfile,Capfile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*} set ft=ruby
+
+  " Spell Check for git commit messages
+  autocmd FileType gitcommit setlocal spell
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -115,14 +123,31 @@ set expandtab
 " Always display the status line
 set laststatus=2
 
+" Encryption
+set cryptmethod=blowfish
+
 " Edit the README_FOR_APP (makes :R commands work)
 map <Leader>R :e doc/README_FOR_APP<CR>
 
+" Spell toggle
+nmap <silent> <leader>s :set spell!<CR>
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" disabble autoindenting when pasting text from clipboard
-set pastetoggle=<F2>
+" disabble autoindenting when pasting text from clipboard (I never use f2)
+" set pastetoggle=<F2>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
@@ -160,7 +185,7 @@ imap <C-L> <Space>=><Space>
 
 " Use Ack instead of Grep when available
 if executable("ack")
-  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+  set grepprg=ack\ -k\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
 
 colorscheme xndd
@@ -191,27 +216,20 @@ set smartcase
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 set tags=./tags;
 
-" Toggle NERDTree
-map <Leader>nt :NERDTreeToggle<CR>
-
-" Gundo toggle
-map <Leader>gd :GundoToggle<CR>
 
 " Open URL
 function! OpenURL()
   let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
-  echo s:uri
   if s:uri != ""
     exec "!open \"" . s:uri . "\""
+    echo s:uri
   else
     echo "No URI found in line."
+    echo s:uri
   endif
 endfunction
 map <Leader>w :call OpenURL()<CR>
 "command -bar -nargs=1 OpenURL :!open <args>
-
-set hidden " avoid vim to prompt when changing buffer
-set textwidth=80
 
 " Move single line
 "nmap <C-k> ddkP
@@ -255,7 +273,7 @@ function! ChangeDirectory(dir, ...)
   call s:UpdateNERDTree(stay)
 endfunction
 
-" Show highlighting groups for current word
+" Show highlighting groups for current word - useful for editing themes
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
@@ -269,15 +287,42 @@ endfunction
 cmap w!! w !sudo tee % >/dev/null
 "cmap w!! %!sudo tee > /dev/null %
 
-" Auto-Clean Fugitive Buffers
-autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" Search some string in Rails' app folder.
+" was intended for removing deadweight - search unused methods/css definition.
+function! SearchInApp()
+  let s:selected_text = getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]
+  if s:selected_text != ""
+    exec "grep! \"" . s:selected_text . "\" app/ vendor/assets/"
+  endif
+endfunction
+vmap <Leader>sa :call SearchInApp()<CR><CR>
+"
+" TODO: REFACTOR!
+function! SearchInSpec()
+  let s:selected_text = getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]
+  if s:selected_text != ""
+    exec "grep! \"" . s:selected_text . "\" features/ spec/"
+  endif
+endfunction
+vmap <Leader>ss :call SearchInSpec()<CR><CR>
+
 " Add git branch to status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-nnoremap <Leader>cl :set cursorline!<CR>
-nnoremap <Leader>cc :set cursorcolumn!<CR>
 
-set cursorline
+"
+" Plugins
+"
+" Toggle NERDTree
+map <Leader>nt :NERDTreeToggle<CR>
+" Gundo toggle
+map <Leader>gd :GundoToggle<CR>
+" Turbux
+let g:turbux_command_prefix = 'zbx'
+" Auto-Clean Fugitive Buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 
 " CheatSheets
 " - Tidy xml
