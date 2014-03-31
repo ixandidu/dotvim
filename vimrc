@@ -24,7 +24,7 @@ set history=50 " keep 50 lines of command line history
 set ruler     " show the cursor position all the time
 set showcmd   " display incomplete commands
 set incsearch " do incremental searching
-set nowrap    " Switch wrap off for everything
+"set nowrap    " Switch wrap off for everything
 set hidden    " avoid vim warning for unsaved changes when changing buffer
 set scrolloff=3     " Show 3 lines of content arround the cursor
 set sidescrolloff=5 " Show 5 chars of content arround the cursor
@@ -209,8 +209,8 @@ set complete=.,b,u,t
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " case only matters with mixed case expressions
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 
 " CTags - you need to install CTags
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
@@ -285,7 +285,6 @@ endfunction
 
 " I always forget using sudo
 cmap w!! w !sudo tee % >/dev/null
-"cmap w!! %!sudo tee > /dev/null %
 
 
 " Search some string in Rails' app folder.
