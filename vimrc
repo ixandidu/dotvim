@@ -4,7 +4,7 @@ set nocompatible
 
 "
 " Pathogen initialization
-call pathogen#incubate()
+call pathogen#infect('bundle/{}')
 call pathogen#helptags()
 
 
@@ -318,7 +318,7 @@ map <Leader>nt :NERDTreeToggle<CR>
 " Gundo toggle
 map <Leader>gd :GundoToggle<CR>
 " Turbux
-let g:turbux_command_prefix = 'zbx'
+let g:turbux_command_prefix = 'zsbx'
 " Auto-Clean Fugitive Buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
