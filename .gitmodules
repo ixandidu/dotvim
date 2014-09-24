@@ -79,3 +79,6 @@
 [submodule "bundle/emmet-vim"]
 	path = bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim-emblem"]
+	path = bundle/vim-emblem
+	url = https://github.com/heartsentwined/vim-emblem.git

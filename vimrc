@@ -79,6 +79,12 @@ if has("autocmd")
   " Spell Check for git commit messages
   autocmd FileType gitcommit setlocal spell
 
+  augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+  augroup END
+
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
@@ -323,6 +329,9 @@ let g:turbux_command_prefix = 'zsbx'
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 
+" neet a way to disable GitGutter since it slow...
+" GitGutterDisable
+
 " CheatSheets
 " - Tidy xml
 "
@@ -335,6 +344,10 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " - Markdown to html
 "
 "     :%!Markdown.pl --html4tags
+"
+" - Convert New Hash Syntax to the old one...
+"
+"     %s/\(\w\+\):\(\s\+\(['":({\[\w]\)\?\)/:\1 =>\2/g
 
 " Use system clipboard
 " set clipboard=unnamed
