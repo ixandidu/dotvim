@@ -316,6 +316,15 @@ vmap <Leader>ss :call SearchInSpec()<CR><CR>
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
+" Replace Old RSpec's `should` with `expect`
+"
+" eg:
+"     response.should render_template(:index) -> expect(response).to render_template(:index)
+"
+"                             1               2  3                 4
+nmap <silent> <leader>re :%s!\(\S\+\)\.should\(_\(not_\)\?\)\?\s\?\(receive\\|[\S]*\)!expect(\1).\3to \4!<CR>
+nmap <silent> <leader>ra :%s!\(\S\+\)\.\%(should_receive\\|stub\)(\?\s\?\(:\w\+?\?\))\?\%(\.and_return\\|\s=>\s\?\)\?(\?\s\?\(@\?\"\?\w\+\"\?\)\?)\?!allow(\1).to receive(\2) { \3 }!<CR>
+
 "
 " Plugins
 "
