@@ -189,9 +189,9 @@ imap <C-L> <Space>=><Space>
 "set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
 "set mouse=a
 
-" Use Ack instead of Grep when available
+" Use The Silver Searcher instead of Grep when available
 if executable("ack")
-  set grepprg=ack\ -k\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+  set grepprg=ag\ -t\ --nobreak\ --noheading\ --nogroup\ --nocolor\ --ignore-dir\ tmp\ --ignore-dir\ coverage
 endif
 
 colorscheme xndd
