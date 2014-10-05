@@ -322,8 +322,9 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 "     response.should render_template(:index) -> expect(response).to render_template(:index)
 "
 "                             1               2  3                 4
-nmap <silent> <leader>re :%s!\(\S\+\)\.should\(_\(not_\)\?\)\?\s\?\(receive\\|[\S]*\)!expect(\1).\3to \4!<CR>
-nmap <silent> <leader>ra :%s!\(\S\+\)\.\%(should_receive\\|stub\)(\?\s\?\(:\w\+[?\!]\?\))\?\%(\.and_return\\|\s=>\s\?\)\?(\?\s\?\(@\?\"\?\w\+\"\?\)\?)\?!allow(\1).to receive(\2) { \3 }!<CR>
+nmap <silent> <leader>re :%s!\(\S\+\)\.should\(_\(not_\)\?\)\?\s\?\(receive\\|\S\+\)!expect(\1).\3to \4!<CR>
+"                             1                                          2                                                                    3
+nmap <silent> <leader>ra :%s!\(\S\+\)\.\%(should_receive\\|stub\)(\?\s\?\(:\w\+[?\!]\?\))\?\%(\.and_\%(return\\|raise\)\\|\s=>\s\?\)\?(\?\s\?\(@\?\"\?\w\+\s\?:\?:\?\w\+\"\?\)\?)\?!allow(\1).to receive(\2) { \3 }!<CR>
 
 "
 " Plugins
