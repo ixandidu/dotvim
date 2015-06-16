@@ -91,3 +91,9 @@
 [submodule "bundle/easy-align"]
 	path = bundle/easy-align
 	url = https://github.com/junegunn/vim-easy-align
+[submodule "bundle/vim-elixir"]
+	path = bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "bundle/vim-mix"]
+	path = bundle/vim-mix
+	url = git://github.com/mattonrails/vim-mix.git
