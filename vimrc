@@ -7,6 +7,8 @@ set nocompatible
 call pathogen#infect('bundle/{}')
 call pathogen#helptags()
 
+" view man pages without shelling out.
+runtime! ftplugin/man.vim
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -30,10 +32,12 @@ set scrolloff=3     " Show 3 lines of content arround the cursor
 set sidescrolloff=5 " Show 5 chars of content arround the cursor
 set visualbell " No Beeping
 set textwidth=80
+"set smc=81 " Syntax coloring lines that are too long just slows down the world
+set nojoinspaces " Use only 1 space after "." when joining lines instead of 2
+
 " Higlight current line and column - because I have bad (cylinder) eyesight
 nnoremap <Leader>cl :set cursorline!<CR>
 nnoremap <Leader>cc :set cursorcolumn!<CR>
-set cursorline
 
 
 " Don't use Ex mode, use Q for formatting
@@ -79,10 +83,11 @@ if has("autocmd")
   " Spell Check for git commit messages
   autocmd FileType gitcommit setlocal spell
 
+  " Set cursorcolum (cuc) and cursorline (cul) on active window only
   augroup BgHighlight
     autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
+    autocmd WinEnter * set cul cuc
+    autocmd WinLeave * set nocul nocuc
   augroup END
 
   " Put these in an autocmd group, so that we can delete them easily.
@@ -91,6 +96,9 @@ if has("autocmd")
 
   " For all text files, markdown, and ruby set 'textwidth' to 80 characters.
   autocmd FileType text,markdown,ruby setlocal textwidth=80
+
+  " JS and JSON file
+  autocmd BufRead,BufNewFile *.js,*.json set ft=javascript tabstop=2 shiftwidth=2 expandtab
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -107,10 +115,25 @@ if has("autocmd")
   au! BufRead,BufNewFile *.haml         setfiletype haml
   au! BufRead,BufNewFile *.markerb      setfiletype markdown
 
+  " Make those debugger statements painfully obvious
+  au BufEnter *.rb syn match error contained "\<binding.pry\>"
+  au BufEnter *.rb syn match error contained "\<debugger\>"
+  au BufEnter *.rb syn match error contained "\<pp\>"
+  au BufEnter *.rb syn match error contained "\<puts\>"
+  au BufEnter *.rb syn match error contained "\<p\>"
+
   augroup END
 else
   set autoindent    " always set autoindenting on
 endif " has("autocmd")
+
+
+" Autocomplete ids and classes in CSS
+"autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
+
+" Add the '-' as a keyword in erb files
+"autocmd FileType eruby set iskeyword=@,48-57,_,192-255,$,-
+
 
 "if has("folding")
 "  set foldenable
@@ -133,7 +156,7 @@ set laststatus=2
 set cryptmethod=blowfish
 
 " Edit the README_FOR_APP (makes :R commands work)
-map <Leader>R :e doc/README_FOR_APP<CR>
+"map <Leader>R :e doc/README_FOR_APP<CR>
 
 " Spell toggle
 nmap <silent> <leader>s :set spell!<CR>
@@ -185,12 +208,11 @@ imap <C-C> <C-R>=substitute(substitute(substitute(expand("%:t:r"), "^\\d\\+[ _]"
 imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
-"set list listchars=tab:»·,trail:·
-"set list listchars=tab:».,trail:.,extends:#,nbsp:.,eol:¬
+set list listchars=tab:»\ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮
 "set mouse=a
 
 " Use The Silver Searcher instead of Grep when available
-if executable("ack")
+if executable("ag")
   set grepprg=ag\ -t\ --nobreak\ --noheading\ --nogroup\ --nocolor\ --ignore-dir\ tmp\ --ignore-dir\ coverage
 endif
 
@@ -215,8 +237,8 @@ set complete=.,b,u,t
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " case only matters with mixed case expressions
-"set ignorecase
-"set smartcase
+set ignorecase
+set smartcase
 
 " CTags - you need to install CTags
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
@@ -238,8 +260,8 @@ map <Leader>w :call OpenURL()<CR>
 "command -bar -nargs=1 OpenURL :!open <args>
 
 " Move single line
-"nmap <C-k> ddkP
 "nmap <C-j> ddp
+"nmap <C-k> ddkP
 map <C-j> :m +1 <CR>
 map <C-k> :m -2 <CR>
 " Move multiple lines based on selection
@@ -312,8 +334,25 @@ function! SearchInSpec()
 endfunction
 vmap <Leader>ss :call SearchInSpec()<CR><CR>
 
+
+set statusline=%<                                " truncation point
+set statusline+=%#TabLineFill#
+"set statusline+=%#PmenuSbar#
+set statusline+=\ %f\                            " file name
+set statusline+=%*
+set statusline+=%#SpellBad#
 " Add git branch to status line
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline+=%{substitute(matchstr(fugitive#statusline(),'(.*)'),'[()]','\ ','g')}
+set statusline+=%*
+set statusline+=\ 
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},  " file encoding
+set statusline+=%{&ff}]                          " file format
+set statusline+=%y                               " filetype
+set statusline+=%m                               " modified flag
+set statusline+=%r                               " read only flag
+set statusline+=%=                               " align left
+set statusline+=%-14.(%l,%c%V%)                  "
+set statusline+=\ %P                             " Percentage
 
 
 " Replace Old RSpec's `should` with `expect`
@@ -322,9 +361,9 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 "     response.should render_template(:index) -> expect(response).to render_template(:index)
 "
 "                             1               2  3                 4
-nmap <silent> <leader>re :%s!\(\S\+\)\.should\(_\(not_\)\?\)\?\s\?\(receive\\|\S\+\)!expect(\1).\3to \4!<CR>
+nmap <silent> <leader>re :%s!\(\S\+\)\.should\(_\(not_\?\)\?\)\?\s\?\(receive\\|\S\+\)!expect(\1).\3to \4!<CR>
 "                             1                                          2                                                                    3
-nmap <silent> <leader>ra :%s!\(\S\+\)\.\%(should_receive\\|stub\)(\?\s\?\(:\w\+[?\!]\?\))\?\%(\.and_\%(return\\|raise\)\\|\s=>\s\?\)\?(\?\s\?\(@\?\"\?\w\+\s\?:\?:\?\w\+\"\?\)\?)\?!allow(\1).to receive(\2) { \3 }!<CR>
+nmap <silent> <leader>ra :%s!\(\S\+\)\.\%(should_receive\\|stub\)(\?\s\?\(:\w\+[=?!]\?\))\?\%(\.and_\%(return\\|raise\)\\|\s=>\s\?\)\?(\?\s\?\(@\?\"\?\w\+\s\?:\?:\?\w\+\"\?\)\?)\?!allow(\1).to receive(\2) { \3 }!<CR>
 
 "
 " Plugins
@@ -337,6 +376,12 @@ map <Leader>gd :GundoToggle<CR>
 let g:turbux_command_prefix = 'zsbx'
 " Auto-Clean Fugitive Buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
+" Easy Align
+" start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 
 " neet a way to disable GitGutter since it slow...

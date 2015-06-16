@@ -152,6 +152,11 @@ hi markdownCode                 ctermfg=143   ctermbg=NONE  cterm=NONE          
 "hi markdownCodeBlock            ctermfg=8     ctermbg=NONE  cterm=NONE          guifg=#999999   guibg=NONE      gui=NONE
 hi markdownCodeBlock            ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
 " highlight trailing whitespace, tab characters, and text at column > 80
 hi XnddUtils                    ctermfg=NONE  ctermbg=8     cterm=NONE          guifg=NONE      guibg=#dc5164   gui=NONE
 match XnddUtils /\s\+$\|\t\+\|\%>80v/
