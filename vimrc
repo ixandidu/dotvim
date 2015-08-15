@@ -373,7 +373,7 @@ map <Leader>nt :NERDTreeToggle<CR>
 " Gundo toggle
 map <Leader>gd :GundoToggle<CR>
 " Turbux
-let g:turbux_command_prefix = 'zsbx'
+let g:turbux_command_prefix = 'zbx'
 " Auto-Clean Fugitive Buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 " Easy Align
