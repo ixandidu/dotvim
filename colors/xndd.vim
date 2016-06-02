@@ -152,6 +152,19 @@ hi markdownCode                 ctermfg=143   ctermbg=NONE  cterm=NONE          
 "hi markdownCodeBlock            ctermfg=8     ctermbg=NONE  cterm=NONE          guifg=#999999   guibg=NONE      gui=NONE
 hi markdownCodeBlock            ctermfg=143   ctermbg=NONE  cterm=NONE          guifg=#a5c261   guibg=NONE      gui=NONE
 
+"
+" Tabs
+"
+" Tab Area
+"hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+"hi TabLineFill ctermfg=143 ctermbg=NONE
+" Inactive Tabs
+"hi TabLine     ctermfg=Blue       ctermbg=Yellow
+" Active tab
+"hi TabLineSel  ctermfg=Red        ctermbg=Yellow
+" Number of split panes
+"hi Title       ctermfg=LightBlue  ctermbg=Magenta
+
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red

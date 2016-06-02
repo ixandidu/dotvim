@@ -68,7 +68,7 @@ if has("autocmd")
 
   " Enable soft-wrapping for text files
   "autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
-  autocmd FileType text,markdown setlocal wrap linebreak nolist
+  autocmd FileType text,markdown setlocal wrap linebreak nolist expandtab
 
   autocmd BufNewFile,BufRead *.markdown,*.md,*.mdown,*.mkd,*.mkdn
         \ if &ft =~# '^\%(conf\|modula2\)$' |
@@ -109,7 +109,7 @@ if has("autocmd")
     \ endif
 
   " Automatically load .vimrc source when saved
-  autocmd BufWritePost .vimrc,.gvimrc source $MYVIMRC
+  autocmd BufWritePost *.vim,.vimrc,.gvimrc source $MYVIMRC
 
   " For Haml
   au! BufRead,BufNewFile *.haml         setfiletype haml
@@ -403,6 +403,10 @@ nmap ga <Plug>(EasyAlign)
 " - Convert New Hash Syntax to the old one...
 "
 "     %s/\(\w\+\):\(\s\+\(['":({\[\w]\)\?\)/:\1 =>\2/g
+"
+" - Convert Old Hash Syntax to the new one...
+"
+"     %s/:\([^ ]*\)\(\s*\)=>/\1:/g
 
 " Use system clipboard
 " set clipboard=unnamed
