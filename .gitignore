@@ -1,2 +1,5 @@
 *.*.sw*
 .netrwhist
+/autoload/
+/undodir/
+/plugs/
